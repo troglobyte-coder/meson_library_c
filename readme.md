@@ -1,4 +1,4 @@
-# 🦎 Bunny package
+# 🐐 Ram package
 
 ## About
 
@@ -22,17 +22,10 @@ desired functionality.
 * * *
 
 Targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
-and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.58.0`
-and newer, uses `c18` standards for initial implementation of the package. The
+and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.59.0`
+and newer, uses `c23` standards for initial implementation of the package. The
 objective by far is usability, security, transparency, and lightweight, packages
 for any if not most of your application development needs.
-
-Here's some important information about our mascot which is relevant to the
-design and architecture of this project.
-
-*Rabbits are small mammals in the family Leporidae (along with the hare) of the order Lagomorpha (along with the pika). Oryctolagus cuniculus includes the European rabbit species and its descendants, the world's 305 breeds of domestic rabbit. Sylvilagus includes 13 wild rabbit species, among them the seven types of cottontail. The European rabbit, which has been introduced on every continent except Antarctica, is familiar throughout the world as a wild prey animal and as a domesticated form of livestock and pet. With its widespread effect on ecologies and cultures, the rabbit (or bunny) is, in many areas of the world, a part of daily life—as food, clothing, a companion, and a source of artistic inspiration.*
-
-*Although once considered rodents, lagomorphs like rabbits have been discovered to have diverged separately and earlier than their rodent cousins and have a number of traits rodents lack, like two extra incisors.*
 
 ## Setup, Compile and Install
 
@@ -43,22 +36,22 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-directory = bunny
-url = https://github.com/bunny-libraries/bunny.git
+directory = module
+url = https://github.com/hyper-ram/module.git
 revision = main
 
 [provide]
-bunny = bunny_dep
+module = module_dep
 ```
 
 
 The next step should be to add the package to your Meson project:
 
 ```meson
-bunny_dep = dependency('bunny')
+module_dep = dependency('module')
 
 executable('prog', 'main.c',
-    dependencies : [bunny_dep])
+    dependencies : [module_dep])
 
 ```
 
@@ -75,16 +68,17 @@ more please view the API documentation thanks.
 **Usage in C**:
 
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-#include <bunny/package.h>
+#include <stdio>
+#include <stdlib>
+#include <hyper-ram/package.h>
+
 
 //
 // main is where all good examples start
 //
 int main(void)
 {
-    puts(greet());
+    printf("%s", ram::greet());
     return EXIT_SUCCESS;
 } // end of function main
 
@@ -94,9 +88,7 @@ int main(void)
 
 * * *
 
-You may find that the Bunny projects has a community in which you
+You may find that the Hyper Ram project has a community in which you
 can keep up to date on the latest features and news. Simply done by
-joining [Bunny Projects](https://www.reddit.com/r/bunny_projects/)
-subreddit on reddit.
-
-Lastly don't forget to have a cup of virtual coffee. Thanks.
+joining on [Facebook](https://www.facebook.com/groups/999167257499689/?ref=share)
+or [MeWe](https://mewe.com/join/hyperram)
