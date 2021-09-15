@@ -78,7 +78,7 @@ more please view the API documentation thanks.
 //
 int main(void)
 {
-    printf("%s", ram::greet());
+    printf("%s", greet());
     return EXIT_SUCCESS;
 } // end of function main
 
