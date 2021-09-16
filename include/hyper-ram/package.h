@@ -3,8 +3,8 @@
 // author: Michael Brockus
 // gmail: <michaelbrockus@gmail.com>
 //
-#ifndef BUNNY_PACKAGE_H
-#define BUNNY_PACKAGE_H
+#ifndef HYPER_RAM_PACKAGE_H
+#define HYPER_RAM_PACKAGE_H
 
 #ifdef __cplusplus
 extern "C"
@@ -14,10 +14,10 @@ extern "C"
 //
 // Macros to control the visibility of functions provided by this package
 //
-#ifdef BUILDING_BUNNY_PACKAGE
-#define BUNNY_PUBLIC __attribute__((visibility("default")))
+#ifdef BUILDING_HYPER_RAM_PACKAGE
+#define HYPER_RAM_PUBLIC __attribute__((visibility("default")))
 #else
-#define BUNNY_PUBLIC
+#define HYPER_RAM_PUBLIC
 #endif
 
 //
@@ -31,10 +31,10 @@ extern "C"
 // package name and everything should just work.
 //
 
-BUNNY_PUBLIC const char *greet(void);
+HYPER_RAM_PUBLIC const char *greet(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // end of BUNNY_PACKAGE_H
+#endif // end of HYPER_RAM_PACKAGE_H
