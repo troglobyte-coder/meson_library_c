@@ -1,6 +1,7 @@
 //
 // file: package.c
 // author: Michael Brockus
+// gmail: <michaelbrockus@gmail.com>
 //
 #include "hyper-ram/package.h"
 
