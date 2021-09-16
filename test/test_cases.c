@@ -9,7 +9,7 @@
 // project since its important to test once implementation against a set
 // of common test cases
 //
-#include "bunny/package.h"
+#include "hyper-ram/package.h"
 #include <unity.h>
 
 //
