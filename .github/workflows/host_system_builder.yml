@@ -119,15 +119,3 @@ jobs:
         cppcheck --project=build/compile_commands.json &&
         meson test -C build -v
       working-directory: .
-
-  opensuse_linux:
-    runs-on: ubuntu-latest
-    container:
-      image: "michaelbrockus/opensuse-host:latest"
-    steps:
-    - uses: actions/checkout@v2.3.4
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
-      working-directory: .
