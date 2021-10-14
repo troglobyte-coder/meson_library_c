@@ -36,7 +36,7 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-directory = module
+directory = ram-module
 url = https://github.com/hyper-ram/module.git
 revision = main
 
@@ -48,7 +48,7 @@ module = module_dep
 The next step should be to add the package to your Meson project:
 
 ```meson
-module_dep = dependency('module')
+module_dep = dependency('ram-module')
 
 executable('prog', 'main.c',
     dependencies : [module_dep])
