@@ -90,5 +90,4 @@ int main(void)
 
 You may find that the Hyper Ram project has a community in which you
 can keep up to date on the latest features and news. Simply done by
-joining on [Facebook](https://www.facebook.com/groups/999167257499689/?ref=share)
-or [MeWe](https://mewe.com/join/hyperram)
+joining on [Reddit](https://www.reddit.com/r/hyper_ram/)
