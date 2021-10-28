@@ -22,7 +22,7 @@ desired functionality.
 * * *
 
 Targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
-and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.59.0`
+and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.60.0`
 and newer, uses `c23` standards for initial implementation of the package. The
 objective by far is usability, security, transparency, and lightweight, packages
 for any if not most of your application development needs.
