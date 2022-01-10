@@ -88,6 +88,14 @@ int main(void)
 
 * * *
 
-You may find that the Hyper Ram project has a community in which you
-can keep up to date on the latest features and news. Simply done by
-joining on [Reddit](https://www.reddit.com/r/hyper_ram/)
+You may find that the projects under the visual cube has a community in which you
+can keep up to date on the latest features, apps being developed and news. Simply done by
+joining on [Reddit](https://www.reddit.com/r/native_oklatopian/)
+
+You may find that I have some platforms in which you can follow me and stay updated on what I’m working on.
+
+- Reddit: [Michael Gene Brockus](https://www.reddit.com/u/Native_Oklatopian)
+- facebook: [Michael Gene Brockus](https://michaelbrockus.medium.com/)
+- linkedin: [Michael Gene Brockus](https://www.linkedin.com/in/michael-brockus)
+
+Lastly don't forget to have a cup of virtual coffee, and happy coding. ☕💻
