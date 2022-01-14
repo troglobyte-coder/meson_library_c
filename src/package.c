@@ -3,7 +3,7 @@
 // author: Michael Brockus
 // gmail: <michaelbrockus@gmail.com>
 //
-#include "hyper-ram/package.h"
+#include "miok/package.h"
 
 //
 // Should return a greeting message as it’s initial value
