@@ -3,8 +3,8 @@
 // author: Michael Brockus
 // gmail: <michaelbrockus@gmail.com>
 //
-#ifndef HYPER_RAM_PACKAGE_H
-#define HYPER_RAM_PACKAGE_H
+#ifndef MIOK_PACKAGE_H
+#define MIOK_PACKAGE_H
 
 #ifdef __cplusplus
 extern "C"
@@ -14,10 +14,10 @@ extern "C"
 //
 // Macros to control the visibility of functions provided by this package
 //
-#ifdef BUILDING_HYPER_RAM_PACKAGE
-#define HYPER_RAM_PUBLIC __attribute__((visibility("default")))
+#ifdef BUILDING_MIOK_PACKAGE
+#define MIOK_PUBLIC __attribute__((visibility("default")))
 #else
-#define HYPER_RAM_PUBLIC
+#define MIOK_PUBLIC
 #endif
 
 //
@@ -31,10 +31,10 @@ extern "C"
 // package name and everything should just work.
 //
 
-HYPER_RAM_PUBLIC const char *greet(void);
+MIOK_PUBLIC const char *greet(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // end of HYPER_RAM_PACKAGE_H
+#endif // end of MIOK_PACKAGE_H
