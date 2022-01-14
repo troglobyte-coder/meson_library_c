@@ -1,9 +1,9 @@
-ram_lib = static_library('hyper-ram',
+miok_lib = static_library('miok',
     'package.c',
     include_directories: inc_dir,
     gnu_symbol_visibility: 'hidden',
     install: true)
 
-ram_dep = declare_dependency(
-    link_with: ram_lib,
+miok_dep = declare_dependency(
+    link_with: miok_lib,
     include_directories: inc_dir)
