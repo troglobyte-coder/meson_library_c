@@ -36,8 +36,8 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-directory = ram-module
-url = https://github.com/hyper-ram/module.git
+directory = miok-module
+url = https://github.com/miok-modules/module.git
 revision = main
 
 [provide]
@@ -48,7 +48,7 @@ module = module_dep
 The next step should be to add the package to your Meson project:
 
 ```meson
-module_dep = dependency('ram-module')
+module_dep = dependency('miko-module')
 
 executable('prog', 'main.c',
     dependencies : [module_dep])
@@ -70,7 +70,7 @@ more please view the API documentation thanks.
 ```c
 #include <stdio>
 #include <stdlib>
-#include <hyper-ram/package.h>
+#include <miko/package.h>
 
 
 //
