@@ -88,7 +88,7 @@ int main(void)
 
 * * *
 
-You may find that the projects under the visual cube has a community in which you
+You may find that the project has a community in which you
 can keep up to date on the latest features, apps being developed and news. Simply done by
 joining on [Reddit](https://www.reddit.com/r/miok/)
 
