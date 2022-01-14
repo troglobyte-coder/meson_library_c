@@ -1,4 +1,4 @@
-# 🐐 Ram package
+# Miok package
 
 ## About
 
@@ -90,7 +90,7 @@ int main(void)
 
 You may find that the projects under the visual cube has a community in which you
 can keep up to date on the latest features, apps being developed and news. Simply done by
-joining on [Reddit](https://www.reddit.com/r/native_oklatopian/)
+joining on [Reddit](https://www.reddit.com/r/miok/)
 
 You may find that I have some platforms in which you can follow me and stay updated on what I’m working on.
 
