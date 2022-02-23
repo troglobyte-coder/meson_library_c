@@ -1,23 +1,12 @@
 # Miok package
 
-## About
+## overview
 
 * * *
 
 Please add relevant information about your package.
 
-The design of the API has significant impact on its usage. The principle of
-information hiding describes the role of programming interfaces as enabling
-modular programming by hiding the implementation details of the modules so that
-users of modules or packages need not understand the complexities inside the
-modules implementation.
-
-Modular programming is a software design technique that emphasizes separating
-the functionality of a program into independent, interchangeable modules, such
-that each contains everything necessary to execute only one aspect of the
-desired functionality.
-
-## Tooling information
+## tooling
 
 * * *
 
@@ -84,18 +73,11 @@ int main(void)
 
 ```
 
-## Join the developer community
+## contact
 
-* * *
+If you want to contact me and have a few questions
+regarding the solutions in the programming you can write
+me a letter, my Gmail is <michaelbrockus@gmail.com>.
 
-You may find that the project has a community in which you
-can keep up to date on the latest features, apps being developed and news. Simply done by
-joining on [Reddit](https://www.reddit.com/r/miok/)
-
-You may find that I have some platforms in which you can follow me and stay updated on what I’m working on.
-
-- Reddit: [Michael Gene Brockus](https://www.reddit.com/u/Native_Oklatopian)
-- facebook: [Michael Gene Brockus](https://michaelbrockus.medium.com/)
-- linkedin: [Michael Gene Brockus](https://www.linkedin.com/in/michael-brockus)
-
-Lastly don't forget to have a cup of virtual coffee, and happy coding. ☕💻
+You may find that I have some social media platforms
+in which you can follow me. [LinkedIn](https://www.linkedin.com/in/michael-brockus), [Facebook](https://facebook.com/michael.brockus.555), and [Instagram](https://instagram.com/michael_gene_brockus/)
