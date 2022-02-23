@@ -46,7 +46,7 @@ executable('prog', 'main.c',
 
 And finally we setup, and compile the project just like normal.
 
-## Usage of this package
+## usage
 
 * * *
 
