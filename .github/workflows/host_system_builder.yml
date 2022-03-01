@@ -17,7 +17,7 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2.4.0
-    - uses: actions/setup-python@v2.3.2
+    - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
     - run: pip install meson ninja scan-build
@@ -39,7 +39,7 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2.4.0
-    - uses: actions/setup-python@v2.3.2
+    - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'        
     - uses: msys2/setup-msys2@v2
