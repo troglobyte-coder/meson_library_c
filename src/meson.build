@@ -1,9 +1,9 @@
-miok_lib = static_library('miok',
+hak_lib = static_library('hak-construct',
     'package.c',
     include_directories: inc_dir,
     gnu_symbol_visibility: 'hidden',
     install: true)
 
-miok_dep = declare_dependency(
-    link_with: miok_lib,
+hak_dep = declare_dependency(
+    link_with: hak_lib,
     include_directories: inc_dir)
