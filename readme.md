@@ -10,7 +10,7 @@ Please add relevant information about your package.
 
 * * *
 
-Targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
+The targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
 and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.62.0`
 and newer, uses `c23` standards for initial implementation of the package. The
 objective by far is usability, security, transparency, and lightweight, packages
