@@ -1,7 +1,6 @@
 [wrap-git]
-directory = unity
 url = https://github.com/ThrowTheSwitch/Unity.git
 revision = head
 
 [provide]
-unity = unity_dep
+dependency_names = unity
