@@ -25,22 +25,22 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-directory = hack-construct
-url = https://github.com/hack-modules/construct-c.git
+directory = hackazon-construct
+url = https://github.com/hackazon-modules/construct-c.git
 revision = main
 
 [provide]
-module = hack_dep
+module = hak_dep
 ```
 
 
 The next step should be to add the package to your Meson project:
 
 ```meson
-hack_dep = dependency('hack-construct')
+hak_dep = dependency('hackazon-construct')
 
 executable('prog', 'main.c',
-    dependencies : [hack_dep])
+    dependencies : [hak_dep])
 
 ```
 
