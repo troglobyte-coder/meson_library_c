@@ -3,4 +3,4 @@ url = https://github.com/ThrowTheSwitch/Unity.git
 revision = head
 
 [provide]
-dependency_names = unity
+unity = unity_dep
