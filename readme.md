@@ -1,4 +1,4 @@
-# Miok package
+# Hackazon construct
 
 ## overview
 
@@ -25,22 +25,22 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-directory = miok-module
-url = https://github.com/miok-modules/module.git
+directory = hack-construct
+url = https://github.com/hack-modules/construct-c.git
 revision = main
 
 [provide]
-module = module_dep
+module = hack_dep
 ```
 
 
 The next step should be to add the package to your Meson project:
 
 ```meson
-module_dep = dependency('miko-module')
+hack_dep = dependency('hack-construct')
 
 executable('prog', 'main.c',
-    dependencies : [module_dep])
+    dependencies : [hack_dep])
 
 ```
 
@@ -59,7 +59,7 @@ more please view the API documentation thanks.
 ```c
 #include <stdio>
 #include <stdlib>
-#include <miko/package.h>
+#include <hackazon/package.h>
 
 
 //

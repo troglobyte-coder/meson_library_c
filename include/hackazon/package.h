@@ -3,8 +3,8 @@
 // author: Michael Brockus
 // gmail: <michaelbrockus@gmail.com>
 //
-#ifndef MIOK_PACKAGE_H
-#define MIOK_PACKAGE_H
+#ifndef HACKAZON_PACKAGE_H
+#define HACKAZON_PACKAGE_H
 
 #ifdef __cplusplus
 extern "C"
@@ -14,10 +14,10 @@ extern "C"
 //
 // Macros to control the visibility of functions provided by this package
 //
-#ifdef BUILDING_MIOK_PACKAGE
-#define MIOK_PUBLIC __attribute__((visibility("default")))
+#ifdef BUILDING_HACKAZON_PACKAGE
+#define HACKAZON_PUBLIC __attribute__((visibility("default")))
 #else
-#define MIOK_PUBLIC
+#define HACKAZON_PUBLIC
 #endif
 
 //
@@ -26,15 +26,13 @@ extern "C"
 //
 // Published package with provided public application interface for
 // use in the users application. Please note that we are internationally
-// targeting c23 standard. If you wish to use a version of this library
-// that targets an older version of C append "-support" at the end of the
-// package name and everything should just work.
+// targeting c23 standard.
 //
 
-MIOK_PUBLIC const char *greet(void);
+HACKAZON_PUBLIC const char *greet(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // end of MIOK_PACKAGE_H
+#endif // end of HACKAZON_PACKAGE_H
