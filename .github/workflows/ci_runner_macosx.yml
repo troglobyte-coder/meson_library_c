@@ -1,0 +1,92 @@
+name: Host MacOSX CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+
+jobs:
+  host_macosx_latest:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
+    - run: meson setup build -Dwith_tests=enabled
+      env:
+        CC: ccache gcc-10
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MacOSX_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_macosx_10:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
+    - run: meson setup build -Dwith_tests=enabled
+      env:
+        CC: ccache gcc-10
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MacOSX_10_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_macosx_11:
+    runs-on: macos-11
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
+    - run: meson setup build -Dwith_tests=enabled
+      env:
+        CC: ccache gcc-10
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MacOSX_11_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_macosx_12:
+    runs-on: macos-12
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+      with:
+        python-version: '3.9.x'
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
+    - run: meson setup build -Dwith_tests=enabled
+      env:
+        CC: ccache gcc
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MacOSX_12_Meson_Testlog
+        path: build/meson-logs/testlog.txt
