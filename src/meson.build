@@ -1,9 +1,7 @@
-hak_lib = static_library('hak-construct',
+trog_lib = static_library('troglo-construct',
     'package.c',
-    include_directories: inc_dir,
-    gnu_symbol_visibility: 'hidden',
-    install: true)
+    include_directories: inc_dir)
 
-hak_dep = declare_dependency(
-    link_with: hak_lib,
+trog_dep = declare_dependency(
+    link_with: trog_lib,
     include_directories: inc_dir)
