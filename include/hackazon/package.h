@@ -1,10 +1,10 @@
 //
-// file: package.h
-// author: Michael Brockus
-// gmail: <michaelbrockus@gmail.com>
+// Troglobyte stdlib:
+// author: Michael Gene Brockus
+// mail: <mailto: michaelbrockus@gmail.com>
 //
-#ifndef HACKAZON_PACKAGE_H
-#define HACKAZON_PACKAGE_H
+#ifndef TROGLOBYTE_PACKAGE_H
+#define TROGLOBYTE_PACKAGE_H
 
 #ifdef __cplusplus
 extern "C"
@@ -14,10 +14,12 @@ extern "C"
 //
 // Macros to control the visibility of functions provided by this package
 //
-#ifdef BUILDING_HACKAZON_PACKAGE
-#define HACKAZON_PUBLIC __attribute__((visibility("default")))
+#ifdef BUILDING_TROGLOBYTE_PACKAGE
+#define TROGLOBYTE_PUBLIC __attribute__((visibility("default")))
+#define TROGLOBYTE_LOCAL __attribute__((visibility("hidden")))
 #else
-#define HACKAZON_PUBLIC
+#define TROGLOBYTE_PUBLIC
+#define TROGLOBYTE_LOCAL
 #endif
 
 //
@@ -29,10 +31,10 @@ extern "C"
 // targeting c23 standard.
 //
 
-HACKAZON_PUBLIC const char *greet(void);
+TROGLOBYTE_PUBLIC const char *greet(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // end of HACKAZON_PACKAGE_H
+#endif // end of TROGLOBYTE_PACKAGE_H
