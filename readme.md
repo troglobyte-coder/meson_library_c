@@ -1,4 +1,4 @@
-# Hackazon construct
+# Troglobyte construct
 
 ## overview
 
@@ -12,7 +12,7 @@ Please add relevant information about your package.
 
 The targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
 and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.62.0`
-and newer, uses `c23` standards for initial implementation of the package. The
+and newer, uses `c18` standards for initial implementation of the package. The
 objective by far is usability, security, transparency, and lightweight, packages
 for any if not most of your application development needs.
 
@@ -25,21 +25,22 @@ in your subprojects directory and include the dependency in your project.
 
 ```console
 [wrap-git]
-url = https://github.com/hackazon-modules/construct-c.git
+directory = troglo-construct
+url = https://github.com/troglobyte-stdlib/troglo-name-c.git
 revision = main
 
 [provide]
-dependency_names = construct-c
+module = trog_dep
 ```
 
 
 The next step should be to add the package to your Meson project:
 
 ```meson
-hak_dep = dependency('construct-c')
+trog_dep = dependency('troglo-construct')
 
 executable('prog', 'main.c',
-    dependencies : [hak_dep])
+    dependencies : [trog_dep])
 
 ```
 
@@ -56,19 +57,23 @@ more please view the API documentation thanks.
 **Usage in C**:
 
 ```c
-#include <stdio>
-#include <stdlib>
-#include <hackazon/package.h>
+//
+// Troglobyte stdlib:
+// author: Michael Gene Brockus
+// gmail: <michaelbrockus@gmail.com>
+//
+#include <stdio.h>
+#include <troglobyte/package.h>
 
 
 //
 // main is where all good examples start
 //
-int main(void)
+int main()
 {
-    printf("%s", greet());
-    return EXIT_SUCCESS;
-} // end of function main
+    printf("%s\n", trog::greet());
+    return 0;
+} // end of func
 
 ```
 
@@ -79,4 +84,4 @@ regarding the solutions in the programming you can write
 me a letter, my Gmail is <michaelbrockus@gmail.com>.
 
 You may find that I have some social media platforms
-in which you can follow me. [LinkedIn](https://www.linkedin.com/in/michael-brockus), [Facebook](https://facebook.com/michael.brockus.555), and [Instagram](https://instagram.com/michael_gene_brockus/)
+in which you can follow me. [LinkedIn](https://www.linkedin.com/in/michael-brockus), [Facebook](https://facebook.com/michael.brockus.555), and [Instagram](https://instagram.com/troglobyte_coder/)
