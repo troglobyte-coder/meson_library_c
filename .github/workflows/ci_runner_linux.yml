@@ -1,0 +1,77 @@
+name: Host Linux CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+
+jobs:
+  host_chromeos:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: nanasess/setup-chromedriver@v1.0.7
+    - run: chromedriver --url-base=/wd/hub &
+    - run: |
+        sudo apt-get install python3 python3-pip gcc cppcheck ccache -y &&
+        python3 -m pip install meson ninja
+    - run: |
+        meson setup build -Dwith_tests=enabled &&
+        cppcheck --project=build/compile_commands.json &&
+        meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: ChromeOS_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_ubuntu:
+    runs-on: ubuntu-latest
+    container:
+      image: "michaelbrockus/ubuntu-host:latest"
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        meson setup build -Dwith_tests=enabled &&
+        cppcheck --project=build/compile_commands.json &&
+        meson test -C build -v
+      working-directory: .
+ 
+  host_debian:
+    runs-on: ubuntu-latest
+    container:
+      image: "michaelbrockus/debian-host:latest"
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        meson setup build -Dwith_tests=enabled &&
+        cppcheck --project=build/compile_commands.json &&
+        meson test -C build -v
+      working-directory: .
+  host_fedora:
+    runs-on: ubuntu-latest
+    container:
+      image: "michaelbrockus/fedora-host:latest"
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        meson setup build -Dwith_tests=enabled &&
+        cppcheck --project=build/compile_commands.json &&
+        meson test -C build -v
+      working-directory: .
+  host_archlinux:
+    runs-on: ubuntu-latest
+    container:
+      image: "michaelbrockus/archlinux-host:latest"
+    steps:
+    - uses: actions/checkout@v3
+    - run: |
+        meson setup build -Dwith_tests=enabled &&
+        cppcheck --project=build/compile_commands.json &&
+        meson test -C build -v
+      working-directory: .
