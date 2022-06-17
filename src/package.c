@@ -1,9 +1,9 @@
 //
-// file: package.c
-// author: Michael Brockus
-// gmail: <michaelbrockus@gmail.com>
+// Troglobyte stdlib:
+// author: Michael Gene Brockus
+// mail: <mailto: michaelbrockus@gmail.com>
 //
-#include "hackazon/package.h"
+#include "troglobyte/package.h"
 
 //
 // Should return a greeting message as it’s initial value
