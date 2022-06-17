@@ -1,15 +1,9 @@
 //
-// file: test_cases.c
-// author: Michael Brockus
-// gmail: <michaelbrockus@gmail.com>
+// Troglobyte stdlib:
+// author: Michael Gene Brockus
+// mail: <mailto: michaelbrockus@gmail.com>
 //
-// USE CASE:
-//
-// The use case of this file is to contain the test cases needed by this
-// project since its important to test once implementation against a set
-// of common test cases
-//
-#include "hackazon/package.h"
+#include "troglobyte/package.h"
 #include <unity.h>
 
 //
