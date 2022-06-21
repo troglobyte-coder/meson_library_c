@@ -1,4 +1,4 @@
-name: Host Windows CI
+name: Host MacOSX CI
 
 on:
   push:
@@ -11,110 +11,82 @@ permissions:
 
 
 jobs:
-  host_windows_latest:
-    runs-on: windows-latest
+  host_macosx_latest:
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v4
       with:
         python-version: '3.9.x'
-    - run: pip install meson ninja
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
     - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
+      env:
+        CC: ccache clang
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: Windows_Meson_Testlog
+        name: MacOSX_Meson_Testlog
         path: build/meson-logs/testlog.txt
 
-  host_windows_2019:
-    runs-on: windows-2019
+  host_macosx_10:
+    runs-on: macos-10.15
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
-    - run: pip install meson ninja
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
     - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
+      env:
+        CC: ccache clang
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: Windows_2019_Meson_Testlog
+        name: MacOSX_10_Meson_Testlog
         path: build/meson-logs/testlog.txt
 
-  host_windows_2022:
-    runs-on: windows-2022
+  host_macosx_11:
+    runs-on: macos-11
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
-    - run: pip install meson ninja
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
     - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
+      env:
+        CC: ccache clang
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: Windows_2022_Meson_Testlog
+        name: MacOSX_11_Meson_Testlog
         path: build/meson-logs/testlog.txt
 
-  host_windows_mingw32:
-    runs-on: windows-latest
+  host_macosx_12:
+    runs-on: macos-12
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: mingw32
-        update: true
-    - run: pip install meson ninja
+    - run: pip install meson ninja scan-build
+    - run: brew install ccache cppcheck
     - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
+      env:
+        CC: ccache clang
+    - run: cppcheck --project=build/compile_commands.json
+    - run: scan-build meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: MinGw32_Meson_Testlog
-        path: build/meson-logs/testlog.txt
-
-  host_windows_mingw64:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: mingw64
-        update: true
-    - run: pip install meson ninja
-    - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: MinGw64_Meson_Testlog
-        path: build/meson-logs/testlog.txt
-  
-  host_windows_msys:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: MSYS
-        update: true
-    - run: pip install meson ninja
-    - run: meson setup build -Dwith_tests=enabled
-    - run: meson test -C build -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: msys_Meson_Testlog
+        name: MacOSX_12_Meson_Testlog
         path: build/meson-logs/testlog.txt
