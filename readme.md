@@ -69,9 +69,9 @@ more please view the API documentation thanks.
 //
 // main is where all good examples start
 //
-int main()
+int main(void)
 {
-    printf("%s\n", trog::greet());
+    printf("%s\n", greet());
     return 0;
 } // end of func
 
