@@ -18,14 +18,8 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: ccache gcc
     - run: pip install meson ninja
     - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache gcc
     - run: meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
@@ -40,14 +34,8 @@ jobs:
     - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: ccache gcc
     - run: pip install meson ninja
     - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache gcc
     - run: meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
@@ -62,17 +50,71 @@ jobs:
     - uses: actions/setup-python@v3
       with:
         python-version: '3.9.x'
-    - uses: msys2/setup-msys2@v2
-      with:
-        update: true
-        install: ccache gcc
     - run: pip install meson ninja
     - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache gcc
     - run: meson test -C build -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: Windows_2022_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_windows_mingw32:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9.x'
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw32
+        update: true
+    - run: pip install meson ninja
+    - run: meson setup build -Dwith_tests=enabled
+    - run: meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MinGw32_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+
+  host_windows_mingw64:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9.x'
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw64
+        update: true
+    - run: pip install meson ninja
+    - run: meson setup build -Dwith_tests=enabled
+    - run: meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MinGw64_Meson_Testlog
+        path: build/meson-logs/testlog.txt
+  
+  host_windows_msys:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.9.x'
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: MSYS
+        update: true
+    - run: pip install meson ninja
+    - run: meson setup build -Dwith_tests=enabled
+    - run: meson test -C build -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: msys_Meson_Testlog
         path: build/meson-logs/testlog.txt
