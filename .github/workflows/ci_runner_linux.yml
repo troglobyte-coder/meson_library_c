@@ -1,77 +1,129 @@
+#
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# gmail: <michaelbrockus@gmail.com>
+#
 name: Host Linux CI
 
+#
+# We have is configured so that ci_runner_linux only runs
+# when source files, build scripts and this CI files is
+# changed, we should not just run CI for all changes.
+#
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - ".github/workflows/ci_runner_linux.yml"
+      - "*.c"     # C source files
+      - "*.h"     # C header files
+      - "*.build" # Meson build scripts
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "next"
+    paths:
+      - ".github/workflows/ci_runner_linux.yml"
+      - "*.c"     # C source files
+      - "*.h"     # C header files
+      - "*.build" # Meson build scripts
 
 permissions:
   contents: read
 
-
+#
+# We list all the Linux systems in a nice list so the
+# DevOps team can manage them.
+# 
 jobs:
+  #
+  # ChromeOS latest host system target
+  #
   host_chromeos:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: nanasess/setup-chromedriver@v1.0.7
     - run: chromedriver --url-base=/wd/hub &
-    - run: |
+    - name: Install Meson build
+      run: |
         sudo apt-get install --fix-missing python3 python3-pip gcc cppcheck -y &&
-        python3 -m pip install meson ninja
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
+        python3 -m pip install meson ninja scan-build
+    - name: Setup, Compile, Scan, Tests
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v &&
+        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
         name: ChromeOS_Meson_Testlog
-        path: build/meson-logs/testlog.txt
+        path: builddir/meson-logs/testlog.txt
 
+  #
+  # Ubuntu latest host system target
+  #
   host_ubuntu:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/ubuntu-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
+    - name: Running CI-Image
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v
+        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
       working-directory: .
- 
+
+  #
+  # Debian latest host system target
+  #
   host_debian:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/debian-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
+    - name: Running CI-Image
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v
+        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
       working-directory: .
+
+  #
+  # Fedora latest host system target
+  #
   host_fedora:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/fedora-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
+    - name: Running CI-Image
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v
+        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
       working-directory: .
+
+  #
+  # ArchLinux latest host system target
+  #
   host_archlinux:
     runs-on: ubuntu-latest
     container:
       image: "michaelbrockus/archlinux-host:latest"
     steps:
     - uses: actions/checkout@v3
-    - run: |
-        meson setup build -Dwith_tests=enabled &&
-        cppcheck --project=build/compile_commands.json &&
-        meson test -C build -v
+    - name: Running CI-Image
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v
+        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
       working-directory: .
