@@ -1,92 +1,231 @@
-name: Host MacOSX CI
+#
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# gmail: <michaelbrockus@gmail.com>
+#
+name: Host Windows CI
 
+#
+# We have is configured so that ci_runner_windows only runs
+# when source files, build scripts and this CI files is
+# changed, we should not just run CI for all changes.
+#
 on:
   push:
-    branches: [ "main" ]
+    paths:
+      - ".github/workflows/ci_runner_windows.yml"
+      - "*.c"     # C source files
+      - "*.h"     # C header files
+      - "*.build" # Meson build scripts
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
+      - "next"
+    paths:
+      - ".github/workflows/ci_runner_windows.yml"
+      - "*.c"     # C source files
+      - "*.h"     # C header files
+      - "*.build" # Meson build scripts
 
 permissions:
   contents: read
 
-
+#
+# We list all the Windows systems in a nice list so the
+# DevOps team can manage them.
+# 
 jobs:
-  host_macosx_latest:
-    runs-on: macos-latest
+  #
+  # Windows latest host system target
+  #
+  host_windows_latest:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9.x'
-    - run: pip install meson ninja scan-build
-    - run: brew install ccache cppcheck
-    - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache clang
-    - run: cppcheck --project=build/compile_commands.json
-    - run: scan-build meson test -C build -v
+        python-version: '3.10'
+        architecture: x64
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: MacOSX_Meson_Testlog
-        path: build/meson-logs/testlog.txt
+        name: Windows_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
 
-  host_macosx_10:
-    runs-on: macos-10.15
+  #
+  # Windows 2019 host system target
+  #
+  host_windows_2019:
+    runs-on: windows-2019
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9.x'
-    - run: pip install meson ninja scan-build
-    - run: brew install ccache cppcheck
-    - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache clang
-    - run: cppcheck --project=build/compile_commands.json
-    - run: scan-build meson test -C build -v
+        python-version: '3.10'
+        architecture: x64
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: MacOSX_10_Meson_Testlog
-        path: build/meson-logs/testlog.txt
+        name: Windows_2019_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
 
-  host_macosx_11:
-    runs-on: macos-11
+  #
+  # Windows 2022 host system target
+  #
+  host_windows_2022:
+    runs-on: windows-2022
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9.x'
-    - run: pip install meson ninja scan-build
-    - run: brew install ccache cppcheck
-    - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache clang
-    - run: cppcheck --project=build/compile_commands.json
-    - run: scan-build meson test -C build -v
+        python-version: '3.10'
+        architecture: x64
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: MacOSX_11_Meson_Testlog
-        path: build/meson-logs/testlog.txt
+        name: Windows_2022_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
 
-  host_macosx_12:
-    runs-on: macos-12
+  #
+  # Windows MinGW32 host system target
+  #
+  host_windows_mingw32:
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.9.x'
-    - run: pip install meson ninja scan-build
-    - run: brew install ccache cppcheck
-    - run: meson setup build -Dwith_tests=enabled
-      env:
-        CC: ccache clang
-    - run: cppcheck --project=build/compile_commands.json
-    - run: scan-build meson test -C build -v
+        python-version: '3.10'
+        architecture: x64
+    - name: Setup MinGW 32
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw32
+        update: true
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: MacOSX_12_Meson_Testlog
-        path: build/meson-logs/testlog.txt
+        name: MinGw32_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
+
+  #
+  # Windows MinGW64 host system target
+  #
+  host_windows_mingw64:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        architecture: x64
+    - name: Setup MinGW 64
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: mingw64
+        update: true
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: MinGw64_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
+  
+  #
+  # Windows MSYS host system target
+  #
+  host_windows_msys:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        architecture: x64
+    - name: Setup MSYS
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MSYS
+        update: true
+    - name: Install Meson Build
+      run: |
+          pip install meson ninja
+    - name: Setup Troglo Project
+      run: |
+           meson setup builddir -Dwith_tests=enabled
+    - name: Compile Troglo Project
+      run: |
+           meson compile -C builddir -v
+    - name: Test Troglo Project
+      run: |
+           meson test -C builddir -v
+    - uses: actions/upload-artifact@v3
+      if: failure()
+      with:
+        name: msys_Meson_Testlog
+        path: builddir/meson-logs/testlog.txt
