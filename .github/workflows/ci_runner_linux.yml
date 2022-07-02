@@ -13,19 +13,19 @@ name: Host Linux CI
 on:
   push:
     paths:
-      - ".github/workflows/ci_runner_linux.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
   pull_request:
     branches:
       - "main"
       - "next"
     paths:
-      - ".github/workflows/ci_runner_linux.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
 
 permissions:
   contents: read
@@ -54,19 +54,13 @@ jobs:
         scan-build meson compile -C builddir -v &&
         cppcheck --project=builddir/compile_commands.json &&
         scan-build meson test -C builddir -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: ChromeOS_Meson_Testlog
-        path: builddir/meson-logs/testlog.txt
-
   #
   # Ubuntu latest host system target
   #
   host_ubuntu:
     runs-on: ubuntu-latest
     container:
-      image: "michaelbrockus/ubuntu-host:latest"
+      image: "ghcr.io/troglobyte-coder/ciimage_host_ubuntu:main"
     steps:
     - uses: actions/checkout@v3
     - name: Running CI-Image
@@ -83,7 +77,7 @@ jobs:
   host_debian:
     runs-on: ubuntu-latest
     container:
-      image: "michaelbrockus/debian-host:latest"
+      image: "ghcr.io/troglobyte-coder/ciimage_host_debian:main"
     steps:
     - uses: actions/checkout@v3
     - name: Running CI-Image
@@ -100,7 +94,7 @@ jobs:
   host_fedora:
     runs-on: ubuntu-latest
     container:
-      image: "michaelbrockus/fedora-host:latest"
+      image: "ghcr.io/troglobyte-coder/ciimage_host_fedora:main"
     steps:
     - uses: actions/checkout@v3
     - name: Running CI-Image
@@ -117,13 +111,28 @@ jobs:
   host_archlinux:
     runs-on: ubuntu-latest
     container:
-      image: "michaelbrockus/archlinux-host:latest"
+      image: "ghcr.io/troglobyte-coder/ciimage_host_archlinux:main"
     steps:
     - uses: actions/checkout@v3
     - name: Running CI-Image
       run: |
         scan-build meson setup builddir -Dwith_tests=enabled &&
         scan-build meson compile -C builddir -v
-        cppcheck --project=builddir/compile_commands.json &&
+        scan-build meson test -C builddir -v
+      working-directory: .
+
+  #
+  # OpenSUSE latest host system target
+  #
+  host_opensuse:
+    runs-on: ubuntu-latest
+    container:
+      image: "ghcr.io/troglobyte-coder/ciimage_host_opensuse:main"
+    steps:
+    - uses: actions/checkout@v3
+    - name: Running CI-Image
+      run: |
+        scan-build meson setup builddir -Dwith_tests=enabled &&
+        scan-build meson compile -C builddir -v
         scan-build meson test -C builddir -v
       working-directory: .
