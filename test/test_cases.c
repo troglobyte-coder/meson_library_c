@@ -1,8 +1,8 @@
-//
-// Troglobyte stdlib:
-// author: Michael Gene Brockus
-// mail: <mailto: michaelbrockus@gmail.com>
-//
+/*
+   Troglobyte stdlib:
+   author: Michael Gene Brockus
+   gmail: <michaelbrockus@gmail.com>
+*/
 #include "troglobyte/package.h"
 #include <unity.h>
 
