@@ -30,7 +30,7 @@ url = https://github.com/troglobyte-stdlib/troglo-name-c.git
 revision = main
 
 [provide]
-module = trog_dep
+trog = trog_dep
 ```
 
 
