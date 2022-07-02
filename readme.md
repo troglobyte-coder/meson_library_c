@@ -1,4 +1,8 @@
-# Troglobyte construct
+# C Library
+
+### status
+
+[![Linux Users](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_linux.yml/badge.svg)](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_linux.yml) [![MacOSX Users](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_macosx.yml/badge.svg)](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_macosx.yml) [![Windows Users](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_windows.yml/badge.svg)](https://github.com/troglobyte-coder/meson_library_c/actions/workflows/ci_runner_windows.yml)
 
 ## overview
 
