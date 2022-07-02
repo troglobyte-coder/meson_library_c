@@ -1,0 +1,25 @@
+#
+# Troglobyte AppHub:
+# author: Michael Gene Brockus
+# Gmail: <mail: michaelbrockus@gmail.com>
+#
+name: Check file format
+
+on: [push, pull_request]
+
+concurrency:
+  group: file_fmt-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - run: python3 ./check_format.py
