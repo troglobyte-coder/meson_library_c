@@ -13,19 +13,19 @@ name: Host MacOSX CI
 on:
   push:
     paths:
-      - ".github/workflows/ci_runner_macosx.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
   pull_request:
     branches:
       - "main"
       - "next"
     paths:
-      - ".github/workflows/ci_runner_macosx.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
 
 permissions:
   contents: read
