@@ -13,19 +13,19 @@ name: Host Windows CI
 on:
   push:
     paths:
-      - ".github/workflows/ci_runner_windows.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
   pull_request:
     branches:
       - "main"
       - "next"
     paths:
-      - ".github/workflows/ci_runner_windows.yml"
-      - "*.c"     # C source files
-      - "*.h"     # C header files
-      - "*.build" # Meson build scripts
+      - "**.c"
+      - "**.h"
+      - "**.txt"
+      - "**.build"
 
 permissions:
   contents: read
@@ -63,36 +63,6 @@ jobs:
       if: failure()
       with:
         name: Windows_Meson_Testlog
-        path: builddir/meson-logs/testlog.txt
-
-  #
-  # Windows 2019 host system target
-  #
-  host_windows_2019:
-    runs-on: windows-2019
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        architecture: x64
-    - name: Install Meson Build
-      run: |
-          pip install meson ninja
-    - name: Setup Troglo Project
-      run: |
-           meson setup builddir -Dwith_tests=enabled
-    - name: Compile Troglo Project
-      run: |
-           meson compile -C builddir -v
-    - name: Test Troglo Project
-      run: |
-           meson test -C builddir -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: Windows_2019_Meson_Testlog
         path: builddir/meson-logs/testlog.txt
 
   #
