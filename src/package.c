@@ -1,17 +1,19 @@
-//
-// Troglobyte stdlib:
-// author: Michael Gene Brockus
-// mail: <mailto: michaelbrockus@gmail.com>
-//
+/*
+   Troglobyte AppHub:
+   author: Michael Gene Brockus
+   gmail: <michaelbrockus@gmail.com>
+*/
 #include "troglobyte/package.h"
 
-//
-// Should return a greeting message as it’s initial value
-//
-// Param list:
-// -> There is none to speak of at this time.
-//
+/*
+  overview:
+  > Should output the a greeting message
+  > to the user.
+  >
+  args:
+  -> ...: N/A
+*/
 const char *greet(void)
 {
     return "Hello, C Developer.";
-} // end of functions greet
+} // end of func
