@@ -29,12 +29,11 @@ extern "C"
 // Published package with provided public application interface for
 // use in the users application. Please note that we are internationally
 // targeting c23 standard.
-//
-
+//   
 TROGLOBYTE_PUBLIC const char *greet(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif // end of TROGLOBYTE_PACKAGE_H
+#endif
