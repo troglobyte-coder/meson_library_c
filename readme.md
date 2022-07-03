@@ -15,8 +15,8 @@ Please add relevant information about your package.
 * * *
 
 The targeted audience we are building for is *Windows 10*, *MacOSX*, *ChromeOS*
-and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.62.0`
-and newer, uses `c2x` standards for initial implementation of the package. The
+and *Linux* users. This project uses [Meson](https://mesonbuild.com/) `0.63.0`
+and newer, uses `c11` standards for initial implementation of the package. The
 objective by far is usability, security, transparency, and lightweight, packages
 for any if not most of your application development needs.
 
