@@ -1,3 +1,3 @@
-add_project_arguments('-DBUILDING_TROGLOBYTE_PACKAGE', language : 'c')
+install_headers('troglobyte/package.h')
 
 inc_dir = include_directories('.')
