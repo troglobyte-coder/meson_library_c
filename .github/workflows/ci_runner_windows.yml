@@ -35,38 +35,7 @@ permissions:
 # DevOps team can manage them.
 # 
 jobs:
-
   #
-  # Windows latest host system target
-  #
-  host_windows_with_shared:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        architecture: x64
-    - name: Install Meson Build
-      run: |
-          pip install meson ninja
-    - name: Setup Troglo Project
-      run: |
-           meson setup builddir -Dwith_tests=enabled -Ddefault_library=shared
-    - name: Compile Troglo Project
-      run: |
-           meson compile -C builddir -v
-    - name: Test Troglo Project
-      run: |
-           meson test -C builddir -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: Windows_Meson_Testlog
-        path: builddir/meson-logs/testlog.txt
-
-#
   # Windows latest host system target
   #
   host_windows_latest:
