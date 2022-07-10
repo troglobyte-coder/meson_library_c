@@ -12,17 +12,6 @@ extern "C"
 #endif
 
 //
-// Macros to control the visibility of functions provided by this package
-//
-#ifdef BUILDING_TROGLOBYTE_PACKAGE
-#define TROGLOBYTE_PUBLIC __attribute__((visibility("default")))
-#define TROGLOBYTE_LOCAL __attribute__((visibility("hidden")))
-#else
-#define TROGLOBYTE_PUBLIC
-#define TROGLOBYTE_LOCAL
-#endif
-
-//
 //   PUBLIC APPLICATION INTERFACE
 // --------------------------------
 //
@@ -30,7 +19,7 @@ extern "C"
 // use in the users application. Please note that we are internationally
 // targeting c23 standard.
 //   
-TROGLOBYTE_PUBLIC const char *greet(void);
+const char *greet(void);
 
 #ifdef __cplusplus
 }
