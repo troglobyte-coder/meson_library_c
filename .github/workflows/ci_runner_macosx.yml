@@ -35,41 +35,6 @@ permissions:
 # DevOps team can manage them.
 # 
 jobs:
-
-  #
-  # Mac OSX latest host system target
-  #
-  host_macosx_with_shared:
-    runs-on: macos-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
-        architecture: x64
-    - name: Install Meson Build
-      run: |
-          pip install meson ninja scan-build
-          brew install cppcheck
-    - name: Setup Troglo Project
-      run: |
-           scan-build meson setup builddir -Dwith_tests=enabled -Ddefault_library=shared
-    - name: Scan Troglo Project
-      run: |
-           cppcheck --project=builddir/compile_commands.json
-    - name: Compile Troglo Project
-      run: |
-           scan-build meson compile -C builddir -v
-    - name: Test Troglo Project
-      run: |
-           scan-build meson test -C builddir -v
-    - uses: actions/upload-artifact@v3
-      if: failure()
-      with:
-        name: MacOSX_Meson_Testlog
-        path: builddir/meson-logs/testlog.txt
-
   #
   # Mac OSX latest host system target
   #
