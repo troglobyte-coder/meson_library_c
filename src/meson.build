@@ -1,5 +1,8 @@
-trog_lib = library('troglo_lib-c',
-    'package.c',
+trog_src = files(
+    'package.c')
+
+trog_lib = static_library('troglo_lib-c',
+    trog_src,
     include_directories: inc_dir,
     install: true)
 
